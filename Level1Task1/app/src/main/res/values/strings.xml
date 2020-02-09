@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Level1Task1</string>
+    <string name="textTitle">Guess if the next throw is going to be lower, equal or higher.</string>
+    <string name="textLastThrow">Last Throw: %d</string>
+    <string name="textBtnLower">Lower</string>
+    <string name="textBtnEquals">Equals</string>
+    <string name="textBtnHiger">Higher</string>
+
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+</resources>
