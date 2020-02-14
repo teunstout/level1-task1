@@ -14,7 +14,6 @@ class HigherLowerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_higher_lower)
-
         updateUI()                                                          // call update
         // Listeners
         btnLower.setOnClickListener{onLowerClick()}
@@ -25,7 +24,7 @@ class HigherLowerActivity : AppCompatActivity() {
     fun updateUI() {
         lastThrow = currentThrow                                            // last throw is this throw
         currentThrow = (1..6).random()                                      // roll again
-        dice.setImageResource(img[currentThrow] - 1)                        // set image. (-1 for right index)
+        dice.setImageResource(img[currentThrow - 1])                        // set image. (-1 for right index)
         lastThrowText.text = getString(R.string.textLastThrow, lastThrow)   // set the text of the last throw. 2nd variable is parameter
     }
 
@@ -33,26 +32,32 @@ class HigherLowerActivity : AppCompatActivity() {
 
     fun onHigherClick() {
         updateUI()
-        if (currentThrow > lastThrow) onAnswerCorrect() else onAnswerIncorrect()
+        toastMessage(currentThrow > lastThrow)
+//        if (currentThrow > lastThrow) onAnswerCorrect() else onAnswerIncorrect()
     }
 
     fun onLowerClick(){
         updateUI()
-        if (currentThrow < lastThrow) onAnswerCorrect() else onAnswerIncorrect()
+        toastMessage(currentThrow < lastThrow)
+//        if (currentThrow < lastThrow) onAnswerCorrect() else onAnswerIncorrect()
     }
 
     fun onEqualClick() {
         updateUI()
-        if (currentThrow == lastThrow) onAnswerCorrect() else onAnswerIncorrect()
+        toastMessage(currentThrow == lastThrow)
+//        if (currentThrow == lastThrow) onAnswerCorrect() else onAnswerIncorrect()
     }
 
-    // correct incorrect messages
+//    fun onAnswerCorrect(){
+//        Toast.makeText(this, R.string.correct , Toast.LENGTH_SHORT).show()
+//    }
+//
+//    fun onAnswerIncorrect() {
+//        Toast.makeText(this, R.string.incorrect , Toast.LENGTH_SHORT).show()
+//    }
 
-    fun onAnswerCorrect(){
-        Toast.makeText(this, R.string.correct , Toast.LENGTH_SHORT).show()
-    }
-
-    fun onAnswerIncorrect() {
-        Toast.makeText(this, R.string.incorrect , Toast.LENGTH_SHORT).show()
+    fun toastMessage(awnserGood: Boolean){
+        val message = if(awnserGood) R.string.correct else R.string.incorrect
+        Toast.makeText(this, message , Toast.LENGTH_SHORT).show()
     }
 }
